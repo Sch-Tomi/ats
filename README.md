@@ -56,4 +56,4 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
 - Staff kijelőlése a projektjeihez
 
 
-![Usecase Diagram](https://github.com/Sch-Tomi/ats/doc/img/usecase.png "Usecase Diagram")
+![Usecase Diagram](https://github.com/Sch-Tomi/ats/blob/master/doc/img/usecase.png "Usecase Diagram")

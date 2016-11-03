@@ -20,13 +20,13 @@
 ## Jegy
 - Statuszok:
     - Open:
-        - NEW
-        - Working
-        - Waiting for more info
+        - NEW - 1
+        - Working - 2
+        - Waiting for more info - 3
     - Closed:
-        - Fixed
-        - On-hold
-        - Deleted
+        - Fixed - 4
+        - On-hold - 5
+        - Deleted - 6
 - Adatai:
     - Létrehozó
     - Dátum

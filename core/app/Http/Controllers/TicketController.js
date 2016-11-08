@@ -4,6 +4,7 @@ const Database = use('Database')
 const Validator = use('Validator')
 const Ticket = use('App/Model/Ticket')
 const User = use('App/Model/User')
+const Connetion = use('App/Model/Connetion')
 
 class TicketController {
 
@@ -46,7 +47,7 @@ class TicketController {
 
 		yield ticket.save()
 
-		yield res.redirect('/')
+		yield res.redirect('/ticket/'+ticket.id)
 
 
 	}
@@ -63,7 +64,10 @@ class TicketController {
 			//const owner = yield Database.from('users').where('id',comment.owner_id).limit(1)
 			const owner = yield User.find(comment.owner_id)
 			console.log(owner)
-			comment.owner = owner.toJSON
+			comment.owner = owner.toJSON()
+			const rank = yield Database.from('connetions').select('rank').where({ user_id:comment.owner_id, project_id:ticket.project_id })
+			console.log(rank.length )
+			comment.user_rank = (rank.length != 0) ? (rank[0].rank) : (1)
 			//yield comment.related('user').load()
 		}
 

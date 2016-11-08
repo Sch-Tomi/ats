@@ -2,6 +2,7 @@
 
 const Validator = use('Validator')
 const Project = use('App/Model/Project')
+const Connetion = use('App/Model/Connetion')
 
 class ProjectController {
 
@@ -41,7 +42,14 @@ class ProjectController {
 
 			yield project.save()
 
-			yield res.redirect('/')
+			const connetion = new Connetion()
+			connetion.user_id = req.currentUser.attributes.id
+			connetion.project_id = project.id
+			connetion.rank = 3
+
+			yield connetion.save()
+
+			yield res.redirect('/project/'+project.id)
 		}
 
 

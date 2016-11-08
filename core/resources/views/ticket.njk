@@ -21,15 +21,33 @@
         <div class="panel-body">
           <div class="col-md-10 col-md-offset-1">
             {% for comment in comments%}
-            <div class="panel panel-default">
-              <div class="panel-heading">{{comment.owner_id}}</div>
+              {% if comment.owner_id == ticket.owner_id%}
+              <div class="panel panel-success">
+              {% else %}
+                {% if comment.user_rank == 3 %}
+                <div class="panel panel-danger">
+                {% elif comment.user_rank == 2 %}
+                <div class="panel panel-warning">
+                {% else %}
+                <div class="panel panel-info">
+                {% endif %}
+              {% endif %}
+              <div class="panel-heading">{{comment.owner.firstname+ " " +comment.owner.lastname + "(" + comment.owner.username +")"}}</div>
               <div class="panel-body">
                 {{comment.message}}
               </div>
-            </div>
+            </div> <!-- comment end -->
             {%endfor%}
           </div>
-        </div>
+
+          </div>
+          <div class="panel col-md-offset-9">
+            <span class="label label-success">Ticket Owner</span>
+            <span class="label label-info">User</span>
+            <span class="label label-warning">Staff</span>
+            <span class="label label-danger">Admin</span>
+          </div>
+
       </div>
 			{%if logged%}
 			<div class="panel panel-success">

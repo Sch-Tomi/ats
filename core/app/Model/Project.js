@@ -2,7 +2,7 @@
 
 const Lucid = use('Lucid')
 
-class Projects extends Lucid {
+class Project extends Lucid {
 
 	tickets(){
 		return this.hasMany('App/Model/Ticket')
@@ -10,4 +10,4 @@ class Projects extends Lucid {
 
 }
 
-module.exports = Projects
+module.exports = Project

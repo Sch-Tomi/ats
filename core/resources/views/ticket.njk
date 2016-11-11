@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-2">
 
       <div class="panel panel-default">
 			  <div class="panel-heading">
@@ -68,6 +68,65 @@
 			{%endif%}
 
 		</div>
+
+    <div class="col-md-2 ">
+          <div class="panel panel-default">
+      <div class="panel-heading">Ticket Info
+        {%if staff%}
+        <div class="pull-right">
+          <form class="" action="/update/ticket/{{ticket.id}}" method="get">
+            <button type="submit" class="btn btn-primary">Modifie</button>
+          </form>
+        </div>
+        {%endif%}
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Owner</td>
+                <td>{{ticket.owner.username}}</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                {%if ticket.status == 1%}
+                <td><span class="label label-primary">NEW</span></td>
+                {% elif ticket.status == 2 %}
+                <td><span class="label label-success">Working</span></td>
+                {% elif ticket.status == 3 %}
+                <td><span class="label label-info">Waiting for more information</span></td>
+                {% elif ticket.status == 4 %}
+                <td><span class="label label-success">Fixed</span></td>
+                {% elif ticket.status == 5 %}
+                <td><span class="label label-warning">On-hold</span></td>
+                {% else %}
+                <td><span class="label label-danger">Deleted</span></td>
+                {%endif%}
+              </tr>
+              <tr>
+                <td>Assigned</td>
+                <td>{{ticket.assigned.username}}</td>
+              </tr>
+              <tr>
+                <td>Project</td>
+                <td>{{ticket.project.name}}</td>
+              </tr>
+              <tr>
+                <td>Created</td>
+                <td>{{ticket.created_at}}</td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>{{ticket.updated_at}}</td>
+              </tr>
+            </tbody>
+           </table>
+      </div>
+    </div>
+    </div>
+
+
 </div>
 
 {% endblock %}

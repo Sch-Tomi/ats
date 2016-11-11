@@ -39,3 +39,6 @@ Route.post('/create/ticket/:id', 'TicketController.doCreate').middleware('auth:u
 Route.get('/ticket/:id', 'TicketController.show')
 
 Route.post('/comment/add', 'CommentController.add').middleware('auth:user')
+
+Route.get('/update/ticket/:id', 'TicketController.update').middleware('author:staff')
+Route.post('/update/ticket/:id', 'TicketController.doUpdate').middleware('author:staff')

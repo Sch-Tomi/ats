@@ -1,0 +1,51 @@
+{% extends 'index' %}
+
+{% block content %}
+
+<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Edit Ticket - {{ticket.name}}</div>
+				<div class="panel-body">
+					<form class="" role="form" method="POST" action="/update/ticket/{{ticket.id}}">
+						{{ csrfField }}
+					  <div class="form-group">
+					    <label for="name">Name</label>
+					    <input type="text" class="form-control" id="name" value="{{ticket.name}}">
+					  </div>
+					  <div class="form-group">
+					    <label for="desc">Description</label>
+					    <textarea  class="form-control" rows="3" name="desc" >{{ticket.desc}}</textarea>
+					  </div>
+						<div class="form-group">
+					    <label for="status">Status</label>
+							<select name="status" class="form-control">
+								{% for stat in status %}
+									{% if stat.val == ticket.status %}
+										<option value='{{stat.val}}'>{{stat.desc}}</option>
+									{% else %}
+										<option  selected value='{{stat.val}}'>{{stat.desc}}</option>
+									{% endif %}
+								{% endfor %}
+							</select>
+					  </div>
+						<div class="form-group">
+					    <label for="asign">Asigned</label>
+							<select name="asign" class="form-control">
+								{% for staff in staffs %}
+									{% if staff.id == ticket.assigned_id %}
+										<option selected value='{{staff.id}}'>{{staff.username}}</option>
+									{% else %}
+										<option value='{{staff.id}}'>{{staff.username}}</option>
+									{% endif %}
+								{% endfor %}
+							</select>
+					  </div>
+			  		<button type="submit" class="btn btn-success">Update</button>
+					</form>
+				</div>
+			</div>
+		</div>
+</div>
+
+{% endblock %}

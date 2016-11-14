@@ -4,6 +4,17 @@
 
 <div class="row">
 		<div class="col-md-6 col-md-offset-3">
+
+			{% if old('errors') %}
+				<div class="alert alert-danger" role="alert">
+						<ul>
+						{% for error in old('errors') %}
+						<li>{{ error.message }}</li>
+						{% endfor %}
+						</ul>
+				</div>
+			{% endif %}
+
 			<div class="panel panel-default">
 				<div class="panel-heading">Edit Ticket - {{ticket.name}}</div>
 				<div class="panel-body">
@@ -11,7 +22,7 @@
 						{{ csrfField }}
 					  <div class="form-group">
 					    <label for="name">Name</label>
-					    <input type="text" class="form-control" id="name" value="{{ticket.name}}">
+					    <input type="text" class="form-control" name="name" value="{{ticket.name}}">
 					  </div>
 					  <div class="form-group">
 					    <label for="desc">Description</label>
@@ -22,16 +33,16 @@
 							<select name="status" class="form-control">
 								{% for stat in status %}
 									{% if stat.val == ticket.status %}
-										<option value='{{stat.val}}'>{{stat.desc}}</option>
+										<option selected value='{{stat.val}}'>{{stat.desc}}</option>
 									{% else %}
-										<option  selected value='{{stat.val}}'>{{stat.desc}}</option>
+										<option value='{{stat.val}}'>{{stat.desc}}</option>
 									{% endif %}
 								{% endfor %}
 							</select>
 					  </div>
 						<div class="form-group">
 					    <label for="asign">Asigned</label>
-							<select name="asign" class="form-control">
+							<select name="assign" class="form-control">
 								{% for staff in staffs %}
 									{% if staff.id == ticket.assigned_id %}
 										<option selected value='{{staff.id}}'>{{staff.username}}</option>

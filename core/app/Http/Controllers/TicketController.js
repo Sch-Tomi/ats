@@ -129,8 +129,51 @@ class TicketController {
 
 	}
 
+	* doUpdate(req, res) {
+
+		const data = {
+			name:req.input('name'),
+			desc:req.input('desc'),
+			status:req.input('status'),
+			assign:req.input('assign')
+		}
+
+		const rules = {
+			name:'required|min:5',
+			desc:'required|min:50',
+			status:'required',
+			assign:'required'
+
+		}
+
+		const validation = yield Validator.validateAll(data, rules)
+		if(validation.fails()){
+				yield req
+						.withAll()
+						.andWith({ errors: validation.messages()})
+						.flash()
+
+				res.redirect('/update/ticket/'+req.param('id'))
+				return
+		}
 
 
+		const ticket = yield Ticket.find(req.param('id'))
+
+		console.log(ticket)
+
+		ticket.name = data.name
+		ticket.desc = data.desc
+		ticket.assigned_id = data.assign
+		ticket.status = data.status
+
+		console.log(ticket)
+
+		yield ticket.save()
+
+		res.redirect('/ticket/'+req.param('id'))
+		return
+	}
 }
 
 module.exports = TicketController

@@ -1,0 +1,55 @@
+{% extends 'index' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                    Tickets
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    {% for ticket in tickets%}
+                    <div class="list-group">
+                        <a href="/ticket/{{ticket.id}}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ticket.name}}</h4>
+                            <p class="list-group-item-text">{{ticket.desc}}</p>
+                        </a>
+                    </div>
+                    {%endfor%}
+                    </ul>
+  	          </div>
+  		</div>
+
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                    Comments
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    {% for comment in comments%}
+                    <div class="list-group">
+                        <a href="/ticket/{{comment.ticket_id}}" class="list-group-item">
+                            <p class="list-group-item-text">{{comment.message}}</p>
+                        </a>
+                    </div>
+                    {%endfor%}
+                    </ul>
+  	          </div>
+  		</div>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

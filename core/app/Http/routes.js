@@ -42,3 +42,8 @@ Route.post('/comment/add', 'CommentController.add').middleware('auth:user')
 
 Route.get('/update/ticket/:id', 'TicketController.update').middleware('author:staff')
 Route.post('/update/ticket/:id', 'TicketController.doUpdate').middleware('author:staff')
+
+Route.get('/update/project/:id', 'ProjectController.update').middleware('author:admin')
+Route.post('/update/project/:id', 'ProjectController.doUpdate').middleware('author:admin')
+
+Route.get('/profile/:id', 'ProfileController.show')

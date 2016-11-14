@@ -67,6 +67,38 @@ class ProjectController {
 			 })
 
 		}
+
+
+		* update(req, res){
+
+		}
+
+		* doUpdate(req, res){
+
+			const data = {
+				name:req.input('name'),
+				desc:req.input('desc'),
+			}
+
+			const rules = {
+				name:'required',
+				desc:'required'
+			}
+
+			const validation = yield Validator.validateAll(data, rules)
+			if(validation.fails()){
+					yield req
+							.withAll()
+							.andWith({ errors: validation.messages()})
+							.flash()
+
+					res.redirect('/update/project/'+req.param('id'))
+					return
+			}
+
+
+
+		}
 }
 
 module.exports = ProjectController

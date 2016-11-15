@@ -32,7 +32,7 @@
                 <div class="panel panel-info">
                 {% endif %}
               {% endif %}
-              <div class="panel-heading">{{comment.owner.firstname+ " " +comment.owner.lastname + "(" + comment.owner.username +")"}}</div>
+              <div class="panel-heading"><a href="/profile/{{comment.owner.id}}">{{comment.owner.firstname+ " " +comment.owner.lastname + "(" + comment.owner.username +")"}}</a></div>
               <div class="panel-body">
                 {{comment.message}}
               </div>
@@ -86,7 +86,7 @@
             <tbody>
               <tr>
                 <td>Owner</td>
-                <td>{{ticket.owner.username}}</td>
+                <td><a href="/profile/{{ticket.owner.id}}">{{ticket.owner.username}}</a></td>
               </tr>
               <tr>
                 <td>Status</td>
@@ -106,11 +106,11 @@
               </tr>
               <tr>
                 <td>Assigned</td>
-                <td>{{ticket.assigned.username}}</td>
+                <td><a href="/profile/{{ticket.assigned.id}}">{{ticket.assigned.username}}</a></td>
               </tr>
               <tr>
                 <td>Project</td>
-                <td>{{ticket.project.name}}</td>
+                <td><a href="/project/{{ticket.project.id}}">{{ticket.project.name}}</a></td>
               </tr>
               <tr>
                 <td>Created</td>

@@ -46,4 +46,9 @@ Route.post('/update/ticket/:id', 'TicketController.doUpdate').middleware('author
 Route.get('/update/project/:id', 'ProjectController.update').middleware('author:admin')
 Route.post('/update/project/:id', 'ProjectController.doUpdate').middleware('author:admin')
 
+Route.post('/update/project/:id/delete/staff', 'ProjectController.deleteStaff').middleware('author:admin')
+Route.post('/update/project/:id/add/staff', 'ProjectController.addStaff').middleware('author:admin')
+
+
+
 Route.get('/profile/:id', 'ProfileController.show')

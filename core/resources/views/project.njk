@@ -9,9 +9,16 @@
 			  <div class="panel-heading">
           {{project.name}}
           <div class="pull-right">
+          {%if logged_in%}
           <form class="" action="/create/ticket/{{project.id}}" method="get">
             <button type="submit" class="btn btn-primary">New Ticket</button>
           </form>
+          {%endif%}
+          {%if owner%}
+          <form class="" action="/update/project/{{project.id}}" method="get">
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </form>
+          {%endif%}
           </div>
         </div>
 			  <div class="panel-body">

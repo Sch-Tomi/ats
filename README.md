@@ -94,7 +94,6 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
 
 ######2.1.3. Végpontok
 
-
 * GET/ : főoldal
 * GET/register : regisztrációs oldal
 * POST/register : regisztrált adatok elküldése
@@ -169,14 +168,6 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
 
  ![](docs/images/db-modell.png)
 
-######2.2.4.  Dinamikus működés
-
- **Szekvenciadiagram**
-
- Vegyünk példának a regisztrációt, majd egy új elem felvételét, szerkesztését, törlését, mindezt szekvenciadiagrammon.
-
- ![](docs/images/szekvencia.png)
-
 ###3.	Implementáció
 
 ######3.1.1. Fejlesztőkörnyezet
@@ -195,6 +186,51 @@ Text Editor: **Atom**
 
 * **ats**
     * **core**
+        * **app**
+        * **Commands**
+            * _Greet.js_
+        * **Http**
+            * **Controllers**
+                * _CommentController.js_
+                * _LoginController.js_
+                * _MainController.js_
+                * _ProfileController.js_
+                * _ProjectController.js_
+                * _TicketController.js_
+            * **Middleware**
+                * _Authentication.js_
+                * _Authorization.js_
+            * _kernel.js_
+            * _routes.js_
+        * **Listeners**
+            * _Http.js_
+        * **Model**
+            * _Comment.js_
+            * _Connection.js_
+            * _Project.js_
+            * _Ticket.js_
+            * _Token.js_
+            * _User.js_
+        * **bootstrap**
+            * _app.js_
+            * _events.js_
+            * _extend.js_
+            * _http.js_
+            * _kernel.js_
+        * **config**
+        * **database**
+            * **migrations**
+                * _1477838213483_create_user_table.js_
+                * _1477838213485_create_tokens_table.js_
+                * _1478037208362_projects.js_
+                * _1478092223610_tickets.js_
+                * _1478107699633_comments.js_
+                * _1478169510747_connections.js_
+            * **seeds**
+                * _Database.js_
+            * _development.sqlite_
+            * _factory.js_
+        
     * **doc**
         * **img**
             * _usecase.png_

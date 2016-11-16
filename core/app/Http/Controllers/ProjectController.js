@@ -64,18 +64,38 @@ class ProjectController {
 			 let owner = false
 			 let logged_in = false
 
+			 const owner_data = yield User.find(project.owner_id)
+
 			 if (req.currentUser != null) {
 			 		owner = (project.owner_id == req.currentUser.attributes.id) ? true : false
 					logged_in = true
 			 }
 
-			 console.log(req.currentUser != null)
+			const staffs_id = yield Database.from('connetions').select('user_id').where(function(){
+ 				this.where('project_id', req.param('id'))
+ 				this.where('rank','=', '2')
+ 			})
+
+ 			let staffs = []
+ 			let staffs_ids_arr = [project.owner_id]
+
+ 			for(const staff of staffs_id){
+ 				staffs_ids_arr.push(staff.user_id)
+ 				staffs.push(yield User.find(staff.user_id))
+ 			}
+
+
+
+			 console.log(owner_data)
 
 			 yield res.sendView("project", {
 				 project:project.toJSON(),
 				 tickets:tickets.toJSON(),
 				 owner: owner,
-				 logged_in: logged_in
+				 logged_in: logged_in,
+				 owner_data: owner_data,
+				 staffs:staffs
+
 			 })
 
 		}
@@ -97,8 +117,6 @@ class ProjectController {
 				staffs_ids_arr.push(staff.user_id)
 				staffs.push(yield User.find(staff.user_id))
 			}
-
-			console.log(staffs_ids_arr);
 
 			const users = yield Database.from('users').whereNotIn('id', staffs_ids_arr);
 

@@ -60,10 +60,10 @@ class TicketController {
 		const ticket = yield Ticket.find(req.param('id'))
 		ticket.owner = yield User.find(ticket.owner_id)
 		ticket.assigned = yield User.find(ticket.assigned_id)
-		// TODO: PROJECT.... :@
-		const project = yield Project.find(ticket.project_id)
-		ticket.project = project.name
-		//console.log(project.name);
+		// TODO: PROJECT....
+		yield ticket.related('project').load()
+		ticket.project = ticket.project
+		console.log(ticket.project);
 		const comments = yield ticket.comments().fetch()
 
 		for(const comment of comments){

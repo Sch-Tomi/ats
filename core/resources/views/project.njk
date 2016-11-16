@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-1">
 
       <div class="panel panel-default">
 			  <div class="panel-heading">
@@ -40,6 +40,43 @@
 
 
 		</div>
+
+        <div class="col-md-4">
+              <div class="panel panel-default">
+          <div class="panel-heading">Project Info
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Owner</td>
+                    <td><a href="/profile/{{owner_data.id}}">{{owner_data.username}}</a></td>
+                  </tr>
+                  <tr>
+                    <td>Created</td>
+                    <td>{{project.created_at}}</td>
+                  </tr>
+                  <tr>
+                    <td>Modified</td>
+                    <td>{{project.updated_at}}</td>
+                  </tr>
+                  <tr>
+                      <td>
+                          Staffs
+                      </td>
+                      <td>
+                          {% for staff in staffs %}
+                            <a href="/profile/{{staff.id}}">{{staff.username}}</a>
+                          {% endfor %}
+                      </td>
+                  </tr>
+                </tbody>
+               </table>
+          </div>
+        </div>
+        </div>
+
 </div>
 
 {% endblock %}

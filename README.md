@@ -56,17 +56,13 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
 - Staff kijelőlése a projektjeihez
 
 
-![Usecase Diagram](https://github.com/Sch-Tomi/ats/blob/master/doc/img/usecase.png "Usecase Diagram")
+![Usecase Diagram](/doc/img/usecase.png "Usecase Diagram")
 
 ###2.	Tervezés
 
 #####2.1.	Architektúra terv
 
-######2.1.1. Komponensdiagram
-
-![](docs/images/komponensdiagram1.png)
-
-######2.1.2. Oldaltérkép:
+######2.1.1. Oldaltérkép:
 
 **Publikus:**
 * Főoldal
@@ -92,7 +88,7 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
     * Projekt módostása
     * Staff hozzárendelés
 
-######2.1.3. Végpontok
+######2.1.2. Végpontok
 
 * GET/ : főoldal
 * GET/register : regisztrációs oldal
@@ -116,57 +112,32 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
 
 #####2.2. Felhasználói-felület modell
 
-######2.2.1.Oldalvázlatok:
-**Főoldal**
-![](docs/images/kepernyokep/index.jpg)
-
-**Regisztrációs oldal**
-![](docs/images/kepernyokep/regisztracio.jpg)
-
-**Bejelentkező oldal**
-![](docs/images/kepernyokep/bejelentkezes.jpg)
-
-**Koktél listaoldal**
-![](docs/images/kepernyokep/list.jpg)
-
-**Új koktél felvétele**
-![](docs/images/kepernyokep/new.jpg)
-
-**Koktél megtekintése**
-![](docs/images/kepernyokep/id.jpg)
-
-**Koktél szerkesztése**
-![](docs/images/kepernyokep/edit.jpg)
-
-######2.2.2.Designtervek (végső megvalósítás kinézete):
+######2.2.1. Designtervek (végső megvalósítás kinézete):
 
 **Főoldal**
-![](docs/images/design/index-design.jpg)
+![](doc/img/main.png)
+**Register**
+![](doc/img/register.png)
+**LogIn**
+![](doc/img/login.png)
+**Project létrehozás**
+![](doc/img/create_project.png)
+**Project oldal**
+![](doc/img/project.png)
+**Project Módosítás**
+![](doc/img/project_edit.png)
+**Ticket**
+![](doc/img/ticket.png)
+**Ticket Módosítás**
+![](doc/img/ticket_edit.png)
+**User**
+![](doc/img/user.png)
 
-**Regisztrációs oldal**
-![](docs/images/design/regisztracio-design.jpg)
-
-**Bejelentkező oldal**
-![](docs/images/design/bejelentkezes-design.jpg)
-
-**Koktél listaoldal**
-![](docs/images/design/list-design.jpg)
-
-**Új koktél felvétele**
-![](docs/images/design/new-design.jpg)
-
-**Koktél megtekintése**
-![](docs/images/design/id-design.jpg)
 
 ######2.2.3. Osztálymodell
 
- **Adatmodell**
-
- ![](docs/images/kepernyokep/adatmodell.png)
-
  **Adatbázisterv**
-
- ![](docs/images/db-modell.png)
+ ![](doc/img/databasel.png)
 
 ###3.	Implementáció
 
@@ -230,7 +201,35 @@ Text Editor: **Atom**
                 * _Database.js_
             * _development.sqlite_
             * _factory.js_
-        
+        * **public**
+          * _my-style.css_
+        * **resources**
+          * **errors**
+          * _createProject.njk_
+          * _createTicket.njk_
+          * _index.njk_
+          * _login.njk_
+          * _main.njk_
+          * _master.njk_
+          * _navbar.njk_
+          * _profile.njk_
+          * _project.njk_
+          * _projectUpdate.njk_
+          * _register.njk_
+          * _ticket.njk_
+          * _ticketUpdate.njk_
+          * _welcome.njk_
+        * **storage**
+        * _.editorconfig_
+        * _.env_
+        * _.env.example_
+        * _ace_
+        * _config.json_
+        * _custom.json_
+        * _package.json_
+        * _server.js_
+        * _settings.json_
+        * _users.json_
     * **doc**
         * **img**
             * _usecase.png_

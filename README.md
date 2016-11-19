@@ -1,4 +1,4 @@
-# ATS ![](http://ww1.prweb.com/prfiles/2012/11/16/10144208/gI_86305_association-technology-solutions-logo-denver-colorado.png)
+# ![ATS](http://ww1.prweb.com/prfiles/2012/11/16/10144208/gI_86305_association-technology-solutions-logo-denver-colorado.png)
  Another Ticket System
 
 ## 1 Követelmény analízis

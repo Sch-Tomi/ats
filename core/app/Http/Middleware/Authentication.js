@@ -2,7 +2,8 @@
 
 class Authentication {
 
-  * handle (req, res, next, rank) {
+  *
+  handle(req, res, next, rank) {
 
     let forbidden = true;
 

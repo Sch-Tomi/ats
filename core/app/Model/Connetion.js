@@ -4,13 +4,13 @@ const Lucid = use('Lucid')
 
 class Connetion extends Lucid {
 
-	user(){
-		return this.belongsTo('App/Model/User')
-	}
+  user() {
+    return this.belongsTo('App/Model/User')
+  }
 
-	project(){
-		return this.belongsTo('App/Model/Project')
-	}
+  project() {
+    return this.belongsTo('App/Model/Project')
+  }
 
 }
 

@@ -2,50 +2,40 @@
 
 {% block content %}
 
-<div class="row">
+	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 
 			{% if old('errors') %}
 				<div class="alert alert-danger" role="alert">
-						<ul>
+					<ul>
 						{% for error in old('errors') %}
-						<li>{{ error.message }}</li>
+							<li>{{ error.message }}</li>
 						{% endfor %}
-						</ul>
+					</ul>
 				</div>
 			{% endif %}
 
-				<div class="panel panel-default">
-				  <div class="panel-heading">Create New Ticket</div>
-				  <div class="panel-body">
+			<div class="panel panel-default">
+				<div class="panel-heading">Create New Ticket</div>
+				<div class="panel-body">
 
-									<form class="form-horizontal" role="form" method="POST" action="/create/ticket/{{p_id}}">
-										{{ csrfField }}
-									  <div class="form-group">
-									    <label for="ticketName">Ticket Name</label>
-									    <input type="text" class="form-control" id="ticketName" name="ticketName" value="{{old('ticketName')}}">
-									  </div>
-									  <div class="form-group">
-									    <label for="desc">Description</label>
-											<textarea name="desc" id="desc" class="form-control" rows="3">{{old('desc')}}</textarea>
-									  </div>
-									  <button type="submit" class="btn btn-primary">Create</button>
-									</form>
+					<form class="form-horizontal" role="form" method="POST" action="/create/ticket/{{p_id}}">
+						{{ csrfField }}
+						<div class="form-group">
+							<label for="ticketName">Ticket Name</label>
+							<input type="text" class="form-control" id="ticketName" name="ticketName" value="{{old('ticketName')}}">
+						</div>
+						<div class="form-group">
+							<label for="desc">Description</label>
+							<textarea name="desc" id="desc" class="form-control" rows="3">{{old('desc')}}</textarea>
+						</div>
+						<button type="submit" class="btn btn-primary">Create</button>
+					</form>
 
-				  </div>
 				</div>
-
-
-
+			</div>
 
 		</div>
 	</div>
-
-
-
-
-
-
-
 
 {% endblock %}

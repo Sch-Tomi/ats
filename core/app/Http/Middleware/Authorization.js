@@ -4,13 +4,17 @@ const Database = use('Database')
 
 class Authorization {
 
-  * handle (req, res, next, rank) {
+  *
+  handle(req, res, next, rank) {
 
     let forbidden = true;
 
     if (req.currentUser != null) {
 
-      let user_rank = yield Database.from('connetions').select('rank').where({ user_id:req.currentUser.attributes.id, project_id:req.param('id') })
+      let user_rank = yield Database.from('connetions').select('rank').where({
+        user_id: req.currentUser.attributes.id,
+        project_id: req.param('id')
+      })
 
       user_rank = (user_rank.length != 0) ? (user_rank[0].rank) : (1)
 

@@ -2,21 +2,22 @@
 
 {% block content %}
 
-<div class="row">
+	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 
 			{% if old('errors') %}
 				<div class="alert alert-danger" role="alert">
-						<ul>
+					<ul>
 						{% for error in old('errors') %}
-						<li>{{ error.message }}</li>
+							<li>{{ error.message }}</li>
 						{% endfor %}
-						</ul>
+					</ul>
 				</div>
 			{% endif %}
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Edit project - {{project.name}}</div>
+				<div class="panel-heading">Edit project -
+					{{project.name}}</div>
 				<div class="panel-body">
 					<form class="" role="form" method="POST" action="/update/project/{{project.id}}">
 						{{ csrfField }}
@@ -26,16 +27,19 @@
 						</div>
 						<div class="form-group">
 							<label for="desc">Description</label>
-							<textarea  class="form-control" rows="3" name="desc" >{{project.desc}}</textarea>
+							<textarea class="form-control" rows="3" name="desc">{{project.desc}}</textarea>
 						</div>
 						<button type="submit" class="btn btn-success">Update</button>
 					</form>
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 
-<div class="row">
+{% if admin %}
+
+
+	<div class="row">
 		<div class="col-md-3 col-md-offset-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">Delete staff</div>
@@ -46,13 +50,14 @@
 							<label for="name">Name</label>
 							<select name="staff" class="form-control">
 								{% for staff in staffs %}
-									<option value="{{staff.id}}">{{staff.firstname}} {{staff.lastname}}</option>
+									<option value="{{staff.id}}">{{staff.firstname}}
+										{{staff.lastname}}</option>
 								{% endfor %}
 
 							</select>
 						</div>
-							<button type="submit" class="btn btn-danger">Delete</button>
-						</form>
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -66,16 +71,17 @@
 							<label for="name">Name</label>
 							<select name="newuser" class="form-control">
 								{% for user in users %}
-									<option value="{{user.id}}">{{user.firstname}} {{user.lastname}}</option>
+									<option value="{{user.id}}">{{user.firstname}}
+										{{user.lastname}}</option>
 								{% endfor %}
 
 							</select>
 						</div>
-							<button type="submit" class="btn btn-success">Add</button>
-						</form>
+						<button type="submit" class="btn btn-success">Add</button>
+					</form>
 				</div>
 			</div>
 		</div>
-</div>
-
+	</div>
+{% endif %}
 {% endblock %}

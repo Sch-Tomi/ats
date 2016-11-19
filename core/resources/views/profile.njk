@@ -2,70 +2,68 @@
 
 {% block content %}
 
-<div class="row">
+  <div class="row">
 
     <div class="col-md-3 col-md-offset-1">
-        <div class="panel panel-default">
-  		        <div class="panel-heading">
-                    Tickets
-                </div>
-  			  <div class="panel-body">
-                    <ul class="list-group">
-                    {% for ticket in tickets%}
-                    <div class="list-group">
-                        <a href="/ticket/{{ticket.id}}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{ticket.name}}</h4>
-                            <p class="list-group-item-text">{{ticket.desc}}</p>
-                        </a>
-                    </div>
-                    {%endfor%}
-                    </ul>
-  	          </div>
-  		</div>
-    </div>
-
-    <div class="col-md-3">
-
-        <div class="panel panel-default">
-              <div class="panel-heading">
-                    Staff in
-                </div>
-          <div class="panel-body">
-                    <ul class="list-group">
-                    {% for project in staffin%}
-                    <div class="list-group">
-                        <a href="/project/{{project.ticket_id}}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{project.name}}</h4>
-                            <p class="list-group-item-text">{{project.desc}}</p>
-                        </a>
-                    </div>
-                    {%endfor%}
-                    </ul>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Tickets
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            {% for ticket in tickets%}
+              <div class="list-group">
+                <a href="/ticket/{{ticket.id}}" class="list-group-item">
+                  <h4 class="list-group-item-heading">{{ticket.name}}</h4>
+                  <p class="list-group-item-text">{{ticket.desc}}</p>
+                </a>
               </div>
+              {%endfor%}
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-3">
+      <div class="col-md-3">
+
         <div class="panel panel-default">
-  		        <div class="panel-heading">
-                    Comments
+          <div class="panel-heading">
+            Staff in
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              {% for project in staffin%}
+                <div class="list-group">
+                  <a href="/project/{{project.ticket_id}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{project.name}}</h4>
+                    <p class="list-group-item-text">{{project.desc}}</p>
+                  </a>
                 </div>
-  			  <div class="panel-body">
-                    <ul class="list-group">
-                    {% for comment in comments%}
-                    <div class="list-group">
-                        <a href="/ticket/{{comment.ticket_id}}" class="list-group-item">
-                            <p class="list-group-item-text">{{comment.message}}</p>
-                        </a>
-                    </div>
-                    {%endfor%}
-                    </ul>
-  	          </div>
-  		</div>
-    </div>
+                {%endfor%}
+              </ul>
+            </div>
+          </div>
+        </div>
 
-</div>
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Comments
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                {% for comment in comments%}
+                  <div class="list-group">
+                    <a href="/ticket/{{comment.ticket_id}}" class="list-group-item">
+                      <p class="list-group-item-text">{{comment.message}}</p>
+                    </a>
+                  </div>
+                  {%endfor%}
+                </ul>
+              </div>
+            </div>
+          </div>
 
+        </div>
 
-
-{% endblock %}
+      {% endblock %}

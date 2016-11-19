@@ -4,7 +4,7 @@ const Schema = use('Schema')
 
 class ConnetionsTableSchema extends Schema {
 
-  up () {
+  up() {
     this.create('connetions', (table) => {
       table.increments()
       table.integer('user_id').references('id').inTable('users')
@@ -14,7 +14,7 @@ class ConnetionsTableSchema extends Schema {
     })
   }
 
-  down () {
+  down() {
     this.drop('connetions')
   }
 

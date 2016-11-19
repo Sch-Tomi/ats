@@ -4,7 +4,7 @@ const Schema = use('Schema')
 
 class CommentsTableSchema extends Schema {
 
-  up () {
+  up() {
     this.create('comments', (table) => {
       table.increments()
       table.integer('owner_id').references('id').inTable('users')
@@ -14,7 +14,7 @@ class CommentsTableSchema extends Schema {
     })
   }
 
-  down () {
+  down() {
     this.drop('comments')
   }
 

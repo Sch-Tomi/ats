@@ -1,132 +1,147 @@
 {% extends 'index' %}
 
 {% block content %}
-<div class="row">
+  <div class="row">
     <div class="col-md-6 col-md-offset-1">
 
       <div class="panel panel-default">
-			  <div class="panel-heading">
+        <div class="panel-heading">
           {{ticket.name}}
         </div>
-			  <div class="panel-body">
-					{{ticket.desc}}
-  				</ul>
-			  </div>
-			</div>
-
-      <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Comments</div>
-        <!-- List group -->
         <div class="panel-body">
-          <div class="col-md-10 col-md-offset-1">
-            {% for comment in comments%}
-              {% if comment.owner_id == ticket.owner_id%}
-              <div class="panel panel-success">
-              {% else %}
-                {% if comment.user_rank == 3 %}
+          {{ticket.desc}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Comments</div>
+    <!-- List group -->
+    <div class="panel-body">
+      <div class="col-md-10 col-md-offset-1">
+        {% for comment in comments%}
+          {% if comment.owner_id == ticket.owner_id%}
+            <div class="panel panel-success">
+            {% else %}
+              {% if comment.user_rank == 3 %}
                 <div class="panel panel-danger">
                 {% elif comment.user_rank == 2 %}
-                <div class="panel panel-warning">
-                {% else %}
-                <div class="panel panel-info">
-                {% endif %}
-              {% endif %}
-              <div class="panel-heading"><a href="/profile/{{comment.owner.id}}">{{comment.owner.firstname+ " " +comment.owner.lastname + "(" + comment.owner.username +")"}}</a></div>
-              <div class="panel-body">
-                {{comment.message}}
+                  <div class="panel panel-warning">
+                  {% else %}
+                    <div class="panel panel-info">
+                    {% endif %}
+                  {% endif %}
+                  <div class="panel-heading">
+                    <a href="/profile/{{comment.owner.id}}">{{comment.owner.firstname+ " " +comment.owner.lastname + "(" + comment.owner.username +")"}}</a>
+                    <span class="badge pull-right">{{comment.created_at}}</span>
+                  </div>
+                  <div class="panel-body">
+                    {{comment.message}}
+                  </div>
+
+                </div>
+                <!-- comment end -->
+                {%endfor%}
               </div>
-            </div> <!-- comment end -->
-            {%endfor%}
-          </div>
+
+            </div>
+            <div class="panel col-md-offset-9">
+              <span class="label label-success">Ticket Owner</span>
+              <span class="label label-info">User</span>
+              <span class="label label-warning">Staff</span>
+              <span class="label label-danger">Admin</span>
+            </div>
 
           </div>
-          <div class="panel col-md-offset-9">
-            <span class="label label-success">Ticket Owner</span>
-            <span class="label label-info">User</span>
-            <span class="label label-warning">Staff</span>
-            <span class="label label-danger">Admin</span>
-          </div>
+          {%if logged%}
+            <div class="panel panel-success">
+              <div class="panel-heading">New Comment</div>
+              <div class="panel-body">
+                {% if comment_errors%}
+                  <div class="alert alert-danger" role="alert">{{comment_errors.message}}</div>
+                  {%endif%}
 
-      </div>
-			{%if logged%}
-			<div class="panel panel-success">
-				<div class="panel-heading">New Comment</div>
-				<div class="panel-body">
-					{% if comment_errors%}
-						<div class="alert alert-danger" role="alert">{{comment_errors.message}}</div>
-					{%endif%}
+                  <form class="" action="/comment/add" method="post">
+                    {{ csrfField }}
+                    <input type="hidden" name="ticket_id" value="{{ticket.id}}">
+                    <textarea class="form-control" name="message" rows="3"></textarea>
+                    <button type="submit" class="btn btn-success">Send</button>
+                  </form>
+                </div>
+              </div>
+              {%endif%}
 
-				<form class="" action="/comment/add" method="post">
-					{{ csrfField }}
-					<input type="hidden" name="ticket_id" value="{{ticket.id}}">
-					<textarea class="form-control" name="message" rows="3"></textarea>
-					<button type="submit" class="btn btn-success">Send</button>
-				</form>
-			</div>
-			</div>
-			{%endif%}
+            </div>
 
-		</div>
+            <div class="col-md-3 ">
+              <div class="panel panel-default">
+                <div class="panel-heading">Ticket Info
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Owner</td>
+                          <td>
+                            <a href="/profile/{{ticket.owner.id}}">{{ticket.owner.username}}</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Status</td>
+                          {%if ticket.status == 1%}
+                            <td>
+                              <span class="label label-primary">NEW</span>
+                            </td>
+                          {% elif ticket.status == 2 %}
+                            <td>
+                              <span class="label label-success">Working</span>
+                            </td>
+                          {% elif ticket.status == 3 %}
+                            <td>
+                              <span class="label label-info">Waiting for more information</span>
+                            </td>
+                          {% elif ticket.status == 4 %}
+                            <td>
+                              <span class="label label-success">Fixed</span>
+                            </td>
+                          {% elif ticket.status == 5 %}
+                            <td>
+                              <span class="label label-warning">On-hold</span>
+                            </td>
+                          {% else %}
+                            <td>
+                              <span class="label label-danger">Deleted</span>
+                            </td>
+                            {%endif%}
+                          </tr>
+                          <tr>
+                            <td>Assigned</td>
+                            <td>
+                              <a href="/profile/{{ticket.assigned.id}}">{{ticket.assigned.username}}</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Project</td>
+                            <td>
+                              <a href="/project/{{ticket.projectOBJ.id}}">{{ticket.projectOBJ.name}}</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Created</td>
+                            <td>{{ticket.created_at}}</td>
+                          </tr>
+                          <tr>
+                            <td>Modified</td>
+                            <td>{{ticket.updated_at}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
 
-    <div class="col-md-3 ">
-          <div class="panel panel-default">
-      <div class="panel-heading">Ticket Info
-        {%if staff%}
-        <div class="pull-right">
-          <form class="" action="/update/ticket/{{ticket.id}}" method="get">
-            <button type="submit" class="btn btn-primary">Modifie</button>
-          </form>
-        </div>
-        {%endif%}
-      </div>
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>Owner</td>
-                <td><a href="/profile/{{ticket.owner.id}}">{{ticket.owner.username}}</a></td>
-              </tr>
-              <tr>
-                <td>Status</td>
-                {%if ticket.status == 1%}
-                <td><span class="label label-primary">NEW</span></td>
-                {% elif ticket.status == 2 %}
-                <td><span class="label label-success">Working</span></td>
-                {% elif ticket.status == 3 %}
-                <td><span class="label label-info">Waiting for more information</span></td>
-                {% elif ticket.status == 4 %}
-                <td><span class="label label-success">Fixed</span></td>
-                {% elif ticket.status == 5 %}
-                <td><span class="label label-warning">On-hold</span></td>
-                {% else %}
-                <td><span class="label label-danger">Deleted</span></td>
-                {%endif%}
-              </tr>
-              <tr>
-                <td>Assigned</td>
-                <td><a href="/profile/{{ticket.assigned.id}}">{{ticket.assigned.username}}</a></td>
-              </tr>
-              <tr>
-                <td>Project</td>
-                <td><a href="/project/{{ticket.project.id}}">{{ticket.project.name}}</a></td>
-              </tr>
-              <tr>
-                <td>Created</td>
-                <td>{{ticket.created_at}}</td>
-              </tr>
-              <tr>
-                <td>Modified</td>
-                <td>{{ticket.updated_at}}</td>
-              </tr>
-            </tbody>
-           </table>
-      </div>
-    </div>
-    </div>
+              </div>
 
-
-</div>
-
-{% endblock %}
+            {% endblock %}

@@ -137,7 +137,7 @@ A program célja egy könnyen és egyszeráen használható hiba jegyrendszer l�
 ######2.2.3. Osztálymodell
 
  **Adatbázisterv**
- ![](doc/img/databasel.png)
+ ![](doc/img/database.png)
 
 ###3.	Implementáció
 

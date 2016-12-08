@@ -1,5 +1,9 @@
 {% extends 'index' %}
 
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+{% endblock %}
+
 {% block content %}
 
 	<div class="row">
@@ -19,15 +23,19 @@
 				<div class="panel-heading">Create New Ticket</div>
 				<div class="panel-body">
 
-					<form class="form-horizontal" role="form" method="POST" action="/create/ticket/{{p_id}}">
+					<form data-toggle="validator" class="form-horizontal" role="form" method="POST" action="/create/ticket/{{p_id}}">
 						{{ csrfField }}
-						<div class="form-group">
+						<div class="form-group has-feedback">
 							<label for="ticketName">Ticket Name</label>
-							<input type="text" class="form-control" id="ticketName" name="ticketName" value="{{old('ticketName')}}">
+							<input required data-minlength="5" type="text" class="form-control" id="ticketName" name="ticketName" value="{{old('ticketName')}}">
+							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<div class="help-block with-errors"></div>
 						</div>
-						<div class="form-group">
+						<div class="form-group has-feedback">
 							<label for="desc">Description</label>
-							<textarea name="desc" id="desc" class="form-control" rows="3">{{old('desc')}}</textarea>
+							<textarea required data-minlength="50" name="desc" id="desc" class="form-control" rows="3">{{old('desc')}}</textarea>
+							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<div class="help-block with-errors"></div>
 						</div>
 						<button type="submit" class="btn btn-primary">Create</button>
 					</form>

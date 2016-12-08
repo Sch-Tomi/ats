@@ -136,6 +136,24 @@ class ProjectController {
     })
   }
 
+
+  * staffs(req, res){
+    const project = yield Project.find(req.param('id'))
+
+    const staffs_id = yield Database.from('connetions').select('user_id').where(function() {
+      this.where('project_id', req.param('id'))
+      this.where('rank', '=', '2')
+    })
+
+    let staffs = []
+
+    for (const staff of staffs_id) {
+      staffs.push(yield User.find(staff.user_id))
+    }
+
+    res.json(staffs)
+  }
+
   *
   doUpdate(req, res) {
 
@@ -183,7 +201,7 @@ class ProjectController {
 
     yield connetion.save()
 
-    res.redirect('/project/' + req.param('id'))
+    res.redirect('/update/project/' + req.param('id'))
   }
 
   *
@@ -196,7 +214,7 @@ class ProjectController {
 
     yield connetion.delete()
 
-    res.redirect('/project/' + req.param('id'))
+    res.redirect('/update/project/' + req.param('id'))
   }
 
 }

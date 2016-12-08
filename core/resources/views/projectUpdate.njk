@@ -1,5 +1,13 @@
 {% extends 'index' %}
 
+
+{% block scripts %}
+	{% if admin %}
+		<script src="/scripts/project_update_delete.js" charset="utf-8"></script>
+		<script src="/scripts/project_update_add.js" charset="utf-8"></script>
+	{% endif %}
+{% endblock %}
+
 {% block content %}
 
 	<div class="row">
@@ -30,7 +38,9 @@
 							<textarea class="form-control" rows="3" name="desc">{{project.desc}}</textarea>
 						</div>
 						<button type="submit" class="btn btn-success">Update</button>
+						<a href="/project/{{project.id}}"><button type="button" class="btn btn-primary">Back</button></a>
 					</form>
+
 				</div>
 			</div>
 		</div>
@@ -41,10 +51,10 @@
 
 	<div class="row">
 		<div class="col-md-3 col-md-offset-3">
-			<div class="panel panel-default">
+			<div id="delete_staff" class="panel panel-default">
 				<div class="panel-heading">Delete staff</div>
 				<div class="panel-body">
-					<form class="" role="form" method="POST" action="/update/project/{{project.id}}/delete/staff/">
+					<form id="delete_staff_form" class="" role="form" method="POST" action="/update/project/{{project.id}}/delete/staff/">
 						{{ csrfField }}
 						<div class="form-group">
 							<label for="name">Name</label>
@@ -65,14 +75,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Add staff</div>
 				<div class="panel-body">
-					<form class="" role="form" method="POST" action="/update/project/{{project.id}}/add/staff/">
+					<form id="add_staff_form" class="" role="form" method="POST" action="/update/project/{{project.id}}/add/staff/">
 						{{ csrfField }}
 						<div class="form-group">
 							<label for="name">Name</label>
 							<select name="newuser" class="form-control">
 								{% for user in users %}
-									<option value="{{user.id}}">{{user.firstname}}
-										{{user.lastname}}</option>
+									<option value="{{user.id}}">{{user.firstname}} {{user.lastname}}</option>
 								{% endfor %}
 
 							</select>

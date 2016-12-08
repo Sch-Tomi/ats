@@ -40,6 +40,20 @@ class LoginController {
 
   }
 
+  * ajaxLogin (req, res) {
+        // 1.
+        const email = req.input('email')
+        const password = req.input('password')
+
+        // 3.
+        try {
+            yield req.auth.attempt(email, password)
+            res.ok({ success: true })
+        } catch (ex) {
+            res.ok({ success: false })
+        }
+    }
+
 
   *
   logout(request, response) {

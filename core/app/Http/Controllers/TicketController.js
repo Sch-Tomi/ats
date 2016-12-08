@@ -71,7 +71,7 @@ class TicketController {
       // TODO: PROJECT....
     const pro = yield Project.find(ticket.project_id)
     ticket.projectOBJ = pro
-    // console.log(ticket.project);
+      // console.log(ticket.project);
     const comments = yield ticket.comments().fetch()
 
     for (const comment of comments) {
@@ -111,9 +111,17 @@ class TicketController {
       comments: comments.toJSON(),
       staff: staff_or_admin
     })
-
-
   }
+
+  * suggest(req, res){
+    const ticket = yield Ticket.find(req.param('id'))
+    const project = yield Project.find(ticket.project_id)
+    const tickets = yield project.tickets().pick(3)
+
+    return res.json(tickets.toJSON())
+  }
+
+
 
 
   *

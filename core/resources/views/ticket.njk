@@ -1,5 +1,10 @@
 {% extends 'index' %}
 
+{% block scripts %}
+<script src="/scripts/ticket_suggest.js" charset="utf-8"></script>
+{% endblock %}
+
+
 {% block content %}
   <div class="row">
     <div class="col-md-6 col-md-offset-1">
@@ -75,7 +80,7 @@
             </div>
 
             <div class="col-md-3 ">
-              <div class="panel panel-default">
+              <div id="ticket_info" class="panel panel-default">
                 <div class="panel-heading">Ticket Info
                 </div>
                 <div class="panel-body">
@@ -144,4 +149,4 @@
 
               </div>
 
-            {% endblock %}
+{% endblock %}

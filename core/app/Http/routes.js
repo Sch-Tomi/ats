@@ -49,6 +49,11 @@ Route.post('/update/project/:id', 'ProjectController.doUpdate').middleware('auth
 Route.post('/update/project/:id/delete/staff', 'ProjectController.deleteStaff').middleware('author:admin')
 Route.post('/update/project/:id/add/staff', 'ProjectController.addStaff').middleware('author:admin')
 
-
-
 Route.get('/profile/:id', 'ProfileController.show')
+
+Route.get('/suggest_tickets/:id', 'TicketController.suggest')
+Route.get('/staffs/:id', 'ProjectController.staffs')
+
+Route.group('ajax', function() {
+  Route.post('/login', 'LoginController.ajaxLogin')
+}).prefix('/ajax')

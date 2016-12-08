@@ -260,7 +260,52 @@ Text Editor: **Atom**
 10. Ticket oldalon: új kommentet írhatunk
 11. Ticket oldalon: módosíthatjuk a ticketet
 
-###6.	Irodalomjegyzék:
+### 5. Kliens Oldali Javascript
+
+#### 5.1. Ajax Login
+A belépés link kecsérélse Modal ablakra. A Modalban megjelenik a bejelentkező form, amit a _/login_ oldalról töltődik be *Ajax* segítségével. Majd a _/ajax/login_ urlre küldve megy el a Bejelentkezés, ami a **LoginController.ajaxLogin** metódust hívja.
+
+##### Módosított fájlok:
+* core/app/Http/routes.js
+* core/app/Http/Controllers/LoginController.js
+* core/public/my-style.css
+* core/public/scripts/ajaxLogin.js
+* core/resources/views/index.njk
+* core/resources/views/login.njk
+* core/resources/views/navbar.njk
+
+#### 5.2. Ticket Form ellenőrzés
+Új hibajegy felvételénél előzetes form ellenőrzés.
+
+##### Módosított fájlok:
+* core/resources/views/createTicket.njk
+
+#### 5.3 Ticket Ajánló
+Minden hibajegy oldalon, megjlenik 3 másik hiba jegy ugyan abból a kategóriából. A script elősször is betölti a panel html templatjet Ajaxal, majd lekérdezi 3 ticketet (_/suggest_tickets/_ **TicketController.suggest**).
+
+##### Módosított fájlok:
+* core/app/Http/routes.js
+* core/public/scripts_loads/ticket_suggest.htm
+* core/resources/views/ticket.njk
+* core/public/scripts/ticket_suggest.js
+
+#### 5.4 Staff Profilos törlés
+A projekt adminja staff törlésnél már nem listából választ hanem kis profilokkal. Ajax-al betöltjük egy profilhoz tartozó templatet, majd lekérjük az összes staff adatait JSON-ben. És lecseréljük a formot.
+
+##### Módosított fájlok:
+* core/public/scripts/project_update_delete.js
+* core/app/Http/routes.js
+* core/public/scripts_loads/profile.htm
+* core/resources/views/projectUpdate.njk
+
+#### 5.5 Staff hozzáadás
+Search mező a már betöltött Nevekből. A formot elrejtve egy kereső mezőt szúrunk be majd a kiválasztott elemet a háttérben beállítjuk a formban.
+
+##### Módosított fájlok:
+* core/resources/views/projectUpdate.njk
+* core/public/scripts/project_update_add.js
+
+### 6.	Irodalomjegyzék:
 
 http://webprogramozas.inf.elte.hu/alkfejl.php
 

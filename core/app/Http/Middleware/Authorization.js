@@ -1,6 +1,7 @@
 'use strict'
 
 const Database = use('Database')
+const Ticket = use('App/Model/Ticket')
 
 class Authorization {
 
@@ -11,9 +12,16 @@ class Authorization {
 
     if (req.currentUser != null) {
 
+      let pro_id = req.param('id')
+
+      if(req.url().indexOf('ticket') !== -1){
+        const ticket = yield Ticket.find(pro_id)
+        pro_id = ticket.project_id
+      }
+
       let user_rank = yield Database.from('connetions').select('rank').where({
         user_id: req.currentUser.attributes.id,
-        project_id: req.param('id')
+        project_id: pro_id
       })
 
       user_rank = (user_rank.length != 0) ? (user_rank[0].rank) : (1)

@@ -202,6 +202,14 @@ Text Editor: **Atom**
             * _development.sqlite_
             * _factory.js_
         * **public**
+          * **scripts**
+            * _ajaxLogin.js_
+            * _project_update_add.js_
+            * _project_update_delete.js_
+            * _ticket_suggest.js_
+          * **scripts_loads**
+            * _profile.htm_
+            * _ticket_suggest.htm_
           * _my-style.css_
         * **resources**
           * **errors**
@@ -210,7 +218,6 @@ Text Editor: **Atom**
           * _index.njk_
           * _login.njk_
           * _main.njk_
-          * _master.njk_
           * _navbar.njk_
           * _profile.njk_
           * _project.njk_
@@ -218,7 +225,6 @@ Text Editor: **Atom**
           * _register.njk_
           * _ticket.njk_
           * _ticketUpdate.njk_
-          * _welcome.njk_
         * **storage**
         * _.editorconfig_
         * _.env_
@@ -305,7 +311,20 @@ Search mező a már betöltött Nevekből. A formot elrejtve egy kereső mezőt 
 * core/resources/views/projectUpdate.njk
 * core/public/scripts/project_update_add.js
 
-### 6.	Irodalomjegyzék:
+### 6. Tesztelés
+Selenium Ide használtával tesztelés. (https://addons.mozilla.org/hu/firefox/addon/selenium-ide/)
+#### Fájlok:
+* **suite** - test Suite
+* **user** - user testcase
+* **staff** - staff testcase
+
+#### User TestCase
+A felhasználó bejelntkezik, majd felvesz egy hiba jegyet, ezután kommentel, majd kijelentkezik.
+
+#### Staff TestCase
+A staff bejelntkezik, majd az imént létrehozott hibajegy alá kommentet fűz és módosítja azt.
+
+### 7.	Irodalomjegyzék:
 
 http://webprogramozas.inf.elte.hu/alkfejl.php
 
